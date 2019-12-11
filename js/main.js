@@ -12,12 +12,28 @@ $(document).ready(function() {
   let spot7 = $('#spot7');
   let spot8 = $('#spot8');
   let spot9 = $('#spot9');
+  let gameInfo = $('#gameInfo');
+  let xScore = 0;
+  let oScore = 0;
+  let winner;
+  let checkForWinner = function () {
+    if (xScore === 3) {
+      alert('X wins!');
+    } else if (oScore === 3) {
+      alert('O wins!');
+    }
+  }
   let reset = function () {
       $('#board li').text('-');
-      $('#board li').removeClass('disable');
+      $('#board li').removeClass('disabled');
       $('#board li').removeClass('o');
       $('#board li').removeClass('x');
-      alert('Game Reset');
+      checkForWinner();
+      if (xScore === 3 || oScore === 3) {
+        xScore = 0;
+        oScore = 0;
+      }
+      $(gameInfo).text(`The current score is X - ${xScore} O - ${oScore}`);
   }
   $("#reset").on("click", function() {
     reset();
@@ -25,12 +41,13 @@ $(document).ready(function() {
   $('#board li').on('click', function() {
 
      if(turns == 8) {
-      alert('Tie Game - Press the reset button to start again'); // if turns = 8, and no one has won, its a tie
+      $(gameInfo).text('Tie Game - Press the reset button to move to the next game'); // if turns = 8, and no one has won, its a tie
       turns = 0; //turns reset to 0
     } else if ($(this).hasClass('disabled')){ // if you click on a disabled square, it says the spot has been filled
-      alert('This spot is already filled');
+      $(gameInfo).text('This spot is already filled');
     } else if(turns%2 == 0) { //if turns are an even number e.g. 2, 4, 6, 8, whichever one is clicked on will be filled with o
       turns++;
+      $(gameInfo).text('X Turn');
       $(this).text(o); // changes the text to "o"
       $(this).addClass('disabled o'); // adds class "disabled" to the square which means it is taken
       if(spot1.hasClass('o')&&spot2.hasClass('o')&&spot3.hasClass('o') ||
@@ -41,12 +58,15 @@ $(document).ready(function() {
         spot3.hasClass('o')&&spot6.hasClass('o')&&spot9.hasClass('o') ||
         spot1.hasClass('o')&&spot5.hasClass('o')&&spot9.hasClass('o') ||
         spot3.hasClass('o')&&spot5.hasClass('o')&&spot7.hasClass('o')) {
-          alert('Winner: O - Press the reset button to start again');
+          checkForWinner();
+          $(gameInfo).text('Winner: O - Press the reset button to move to the next game');
+          oScore ++;
           turns = 0;
       }
 
     } else { // if turns are not even, it will be filled with x
       turns++;
+      $(gameInfo).text('O Turn');
       $(this).text(x); // changes the text to "x"
       $(this).addClass('disabled x'); // adds class "disabled" to the square which means it is taken
       if(spot1.hasClass('x')&&spot2.hasClass('x')&&spot3.hasClass('x') ||
@@ -58,7 +78,9 @@ $(document).ready(function() {
         spot1.hasClass('x')&&spot5.hasClass('x')&&spot9.hasClass('x') ||
         spot3.hasClass('x')&&spot5.hasClass('x')&&spot7.hasClass('x'))
       {
-        alert('Winner: X - Press the reset button to start again');
+        checkForWinner();
+        $(gameInfo).text('Winner: X - Press the reset button to move to the next game');
+        xScore ++;
         turns = 0;
     }
   };
