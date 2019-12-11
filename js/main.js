@@ -49,9 +49,10 @@ $(document).ready(function() {
 
      if(turns == 8) {
       $(gameInfo).text('Tie - Press the reset button to move to the next game'); // if turns = 8, and no one has won, its a tie
+      $( "li" ).not( "x", "o" ).addClass('disabled');
       turns = 0; //turns reset to 0
     } else if ($(this).hasClass('disabled')){ // if you click on a disabled square, it says the spot has been filled
-      $(gameInfo).text('This spot is already filled');
+      alert("This spot has been filled");
     } else if(turns%2 == 0) { //if turns are an even number e.g. 2, 4, 6, 8, whichever one is clicked on will be filled with o
       turns++;
       $(gameInfo).text('X Turn');
@@ -67,9 +68,10 @@ $(document).ready(function() {
         spot3.hasClass('o')&&spot5.hasClass('o')&&spot7.hasClass('o')) {
           // checkForWinner();
           $(gameInfo).text('Winner: O - Press the reset button to move to the next game');
+          $( "li" ).not( "x", "o" ).addClass('disabled');
           oScore ++;
-          $(scoreOfX).text(`x - ${xScore}`);
-          $(scoreOfO).text(`o - ${oScore}`);
+          $(scoreOfX).text(`X - ${xScore}`);
+          $(scoreOfO).text(`O - ${oScore}`);
           game ++;
           turns = 0;
       }
@@ -90,9 +92,10 @@ $(document).ready(function() {
       {
         // checkForWinner();
         $(gameInfo).text('Winner: X - Press the reset button to move to the next game');
+        $( "li" ).not( "x", "o" ).addClass('disabled');
         xScore ++;
-        $(scoreOfX).text(`x - ${xScore}`);
-        $(scoreOfO).text(`o - ${oScore}`);
+        $(scoreOfX).text(`X - ${xScore}`);
+        $(scoreOfO).text(`O - ${oScore}`);
         game ++;
         turns = 0;
     }
