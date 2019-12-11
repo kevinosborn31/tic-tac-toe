@@ -15,18 +15,24 @@ $(document).ready(function() {
   let gameInfo = $('#gameInfo');
   let scoreOfX = $('#xScore');
   let scoreOfO = $('#oScore')
+  let resetScore = function () {
+    xScore = 0;
+    oScore = 0;
+  }
   let xScore = 0;
   let oScore = 0;
   let game = 1;
   let winner;
   let checkForWinner = function () {
-    if (xScore === 3) {
+    if (xScore === 2) {
       alert('X wins!');
       xScore = 0;
+      oScore = 0;
       game = 1;
-    } else if (oScore === 3) {
+    } else if (oScore === 2) {
       alert('O wins!');
       oScore = 0;
+      xScore = 0;
       game = 1;
     }
   }
@@ -35,11 +41,6 @@ $(document).ready(function() {
       $('#board li').removeClass('disabled');
       $('#board li').removeClass('o');
       $('#board li').removeClass('x');
-      checkForWinner();
-      if (xScore === 3 || oScore === 3) {
-        xScore = 0;
-        oScore = 0;
-      }
       $(gameInfo).text(`Game ${game}`);
   }
   $("#reset").on("click", function() {
@@ -71,6 +72,7 @@ $(document).ready(function() {
           $(scoreOfX).text(`x - ${xScore}`);
           $(scoreOfO).text(`o - ${oScore}`);
           game ++;
+          reset();
           turns = 0;
       }
 
@@ -94,6 +96,8 @@ $(document).ready(function() {
         $(scoreOfX).text(`x - ${xScore}`);
         $(scoreOfO).text(`o - ${oScore}`);
         game ++;
+        reset();
+
         turns = 0;
     }
   };
