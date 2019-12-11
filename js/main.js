@@ -15,32 +15,31 @@ $(document).ready(function() {
   let gameInfo = $('#gameInfo');
   let scoreOfX = $('#xScore');
   let scoreOfO = $('#oScore')
-  let resetScore = function () {
-    xScore = 0;
-    oScore = 0;
-  }
   let xScore = 0;
   let oScore = 0;
   let game = 1;
   let winner;
-  let checkForWinner = function () {
-    if (xScore === 2) {
-      alert('X wins!');
-      xScore = 0;
-      oScore = 0;
-      game = 1;
-    } else if (oScore === 2) {
-      alert('O wins!');
-      oScore = 0;
-      xScore = 0;
-      game = 1;
-    }
-  }
+  // let checkForWinner = function () {
+  //   if (xScore === 3) {
+  //     alert('X wins!');
+  //     xScore = 0;
+  //     game = 1;
+  //   } else if (oScore === 3) {
+  //     alert('O wins!');
+  //     oScore = 0;
+  //     game = 1;
+  //   }
+  // }
   let reset = function () {
       $('#board li').text('-');
       $('#board li').removeClass('disabled');
       $('#board li').removeClass('o');
       $('#board li').removeClass('x');
+      // checkForWinner();
+      // if (xScore === 3 || oScore === 3) {
+      //   xScore = 0;
+      //   oScore = 0;
+      // }
       $(gameInfo).text(`Game ${game}`);
   }
   $("#reset").on("click", function() {
@@ -49,7 +48,7 @@ $(document).ready(function() {
   $('#board li').on('click', function() {
 
      if(turns == 8) {
-      $(gameInfo).text('Tie Game - Press the reset button to move to the next game'); // if turns = 8, and no one has won, its a tie
+      $(gameInfo).text('Tie - Press the reset button to move to the next game'); // if turns = 8, and no one has won, its a tie
       turns = 0; //turns reset to 0
     } else if ($(this).hasClass('disabled')){ // if you click on a disabled square, it says the spot has been filled
       $(gameInfo).text('This spot is already filled');
@@ -66,13 +65,12 @@ $(document).ready(function() {
         spot3.hasClass('o')&&spot6.hasClass('o')&&spot9.hasClass('o') ||
         spot1.hasClass('o')&&spot5.hasClass('o')&&spot9.hasClass('o') ||
         spot3.hasClass('o')&&spot5.hasClass('o')&&spot7.hasClass('o')) {
-          checkForWinner();
+          // checkForWinner();
           $(gameInfo).text('Winner: O - Press the reset button to move to the next game');
           oScore ++;
           $(scoreOfX).text(`x - ${xScore}`);
           $(scoreOfO).text(`o - ${oScore}`);
           game ++;
-          reset();
           turns = 0;
       }
 
@@ -90,14 +88,12 @@ $(document).ready(function() {
         spot1.hasClass('x')&&spot5.hasClass('x')&&spot9.hasClass('x') ||
         spot3.hasClass('x')&&spot5.hasClass('x')&&spot7.hasClass('x'))
       {
-        checkForWinner();
+        // checkForWinner();
         $(gameInfo).text('Winner: X - Press the reset button to move to the next game');
         xScore ++;
         $(scoreOfX).text(`x - ${xScore}`);
         $(scoreOfO).text(`o - ${oScore}`);
         game ++;
-        reset();
-
         turns = 0;
     }
   };
