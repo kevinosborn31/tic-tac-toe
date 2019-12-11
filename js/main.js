@@ -13,14 +13,21 @@ $(document).ready(function() {
   let spot8 = $('#spot8');
   let spot9 = $('#spot9');
   let gameInfo = $('#gameInfo');
+  let scoreOfX = $('#xScore');
+  let scoreOfO = $('#oScore')
   let xScore = 0;
   let oScore = 0;
+  let game = 1;
   let winner;
   let checkForWinner = function () {
     if (xScore === 3) {
       alert('X wins!');
+      xScore = 0;
+      game = 1;
     } else if (oScore === 3) {
       alert('O wins!');
+      oScore = 0;
+      game = 1;
     }
   }
   let reset = function () {
@@ -33,7 +40,7 @@ $(document).ready(function() {
         xScore = 0;
         oScore = 0;
       }
-      $(gameInfo).text(`The current score is X - ${xScore} O - ${oScore}`);
+      $(gameInfo).text(`Game ${game}`);
   }
   $("#reset").on("click", function() {
     reset();
@@ -61,6 +68,9 @@ $(document).ready(function() {
           checkForWinner();
           $(gameInfo).text('Winner: O - Press the reset button to move to the next game');
           oScore ++;
+          $(scoreOfX).text(`x - ${xScore}`);
+          $(scoreOfO).text(`o - ${oScore}`);
+          game ++;
           turns = 0;
       }
 
@@ -81,6 +91,9 @@ $(document).ready(function() {
         checkForWinner();
         $(gameInfo).text('Winner: X - Press the reset button to move to the next game');
         xScore ++;
+        $(scoreOfX).text(`x - ${xScore}`);
+        $(scoreOfO).text(`o - ${oScore}`);
+        game ++;
         turns = 0;
     }
   };
