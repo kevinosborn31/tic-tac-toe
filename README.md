@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-Live Playable Game:
+Live Playable Game: https://kevinosborn31.github.io/tic-tac-toe/
 
 Description: Simple tic tac toe game, keeps track of the score between X and O, can be best of 3 or 5 or whatever you choose.
 
