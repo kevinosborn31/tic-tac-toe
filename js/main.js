@@ -75,11 +75,8 @@ $(document).ready(function() {
     reset();
   });
   $('#board li').on('click', function() { // function that decides what happens when you click on a square in the board
-
-    let id;
-
-
-     if(turns == 9) {
+      let id;
+      if(turns == 9) {
       $(gameInfo).text('Tie - Press New Game to move to the next game'); // if turns = 8, and no one has won, its a tie
       $( "li" ).not( "x", "o" ).addClass('disabled');
       turns = 0; //turns reset to 0

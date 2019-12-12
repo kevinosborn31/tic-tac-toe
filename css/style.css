@@ -1,7 +1,7 @@
 body {
-  background-image: url(https://i.gifer.com/AA9E.gif);
-  background-size: cover;
-  /* background: #1c1b1b; */
+  /* background-image: url(https://i.gifer.com/AA9E.gif);
+  background-size: cover; */
+  background: #1c1b1b;
   color: #666;
   font-family: "Arial", sans-serif;
 }
