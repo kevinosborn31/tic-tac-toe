@@ -1,6 +1,4 @@
 body {
-  /* background-image: url(https://i.gifer.com/AA9E.gif);
-  background-size: cover; */
   background: #1c1b1b;
   color: #666;
   font-family: "Arial", sans-serif;
@@ -10,6 +8,27 @@ h1 {
   text-align: center;
   color: #fff;
 }
+
+footer {
+  display: block;
+  text-align: center;
+  padding-top: 40px;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  border: 10px solid #666;
+}
+
+.o {
+  color: green !important;
+}
+
+.x {
+  color: red !important;
+}
+
 
 .clearfix {
   clear: both;
@@ -59,24 +78,4 @@ h1 {
   padding: 15px;
   margin-top: 15px;
   border-radius: 5px;
-}
-
-.o {
-  color: green !important;
-}
-
-.x {
-  color: red !important;
-}
-
-footer {
-  display: block;
-  text-align: center;
-  padding-top: 40px;
-}
-
-h2 {
-  text-align: center;
-  color: white;
-  border: 10px solid #666;
 }
