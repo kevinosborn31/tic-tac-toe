@@ -1,0 +1,11 @@
+.demo-list-icon {
+  width: 300px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
